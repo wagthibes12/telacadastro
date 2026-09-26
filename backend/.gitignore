@@ -1,0 +1,10 @@
+# Nunca versionar credenciais
+.env
+
+# Ambiente virtual Python
+venv/
+__pycache__/
+*.pyc
+
+# Editor
+.vscode/

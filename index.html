@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro de Clientes</title>
+    <link rel="stylesheet" href="frontend/css/styles.css" />
+</head>
+<body>
+    <header class="cabecalho">
+        <h1>Cadastro de Clientes</h1>
+        <p class="subtitulo">Gerencie seus clientes de forma simples e rápida</p>
+    </header>
+
+    <main class="conteudo">
+        <!-- Formulário de criação/edição -->
+        <section class="cartao" aria-labelledby="titulo-formulario">
+            <h2 id="titulo-formulario">Novo Cliente</h2>
+
+            <form id="form-cliente" novalidate>
+                <!-- Campo oculto que guarda o ID quando estamos editando -->
+                <input type="hidden" id="cliente-id" value="" />
+
+                <div class="campo">
+                    <label for="nome">Nome</label>
+                    <input type="text" id="nome" name="nome" required minlength="2"
+                           placeholder="Ex: Maria Silva" autocomplete="name" />
+                    <small class="erro" id="erro-nome" role="alert"></small>
+                </div>
+
+                <div class="campo">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" required
+                           placeholder="Ex: [mariasilva@gmail.com]" autocomplete="email" />
+                    <small class="erro" id="erro-email" role="alert"></small>
+                </div>
+
+                <div class="campo">
+                    <label for="telefone">Telefone</label>
+                    <input type="tel" id="telefone" name="telefone" required
+                           placeholder="Ex: (49) 99999-9999" autocomplete="tel" />
+                    <small class="erro" id="erro-telefone" role="alert"></small>
+                </div>
+
+                <div class="campo">
+                    <label for="cidade">Cidade</label>
+                    <input type="text" id="cidade" name="cidade" required minlength="2"
+                           placeholder="Ex: Videira" autocomplete="address-level2" />
+                    <small class="erro" id="erro-cidade" role="alert"></small>
+                </div>
+
+                <div class="acoes-formulario">
+                    <button type="submit" id="btn-salvar" class="botao botao-primario">
+                        Salvar
+                    </button>
+                    <button type="button" id="btn-cancelar" class="botao botao-secundario" hidden>
+                        Cancelar edição
+                    </button>
+                </div>
+            </form>
+
+            <p id="mensagem-status" class="mensagem-status" role="status" aria-live="polite"></p>
+        </section>
+
+        <!-- Lista de clientes cadastrados -->
+        <section class="cartao" aria-labelledby="titulo-lista">
+            <div class="cabecalho-lista">
+                <h2 id="titulo-lista">Clientes Cadastrados</h2>
+                <button type="button" id="btn-atualizar" class="botao botao-texto">
+                    Atualizar lista
+                </button>
+            </div>
+
+            <div class="tabela-wrapper">
+                <table class="tabela-clientes">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nome</th>
+                            <th scope="col">E-mail</th>
+                            <th scope="col">Telefone</th>
+                            <th scope="col">Cidade</th>
+                            <th scope="col">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="corpo-tabela-clientes">
+                        <!-- Linhas inseridas dinamicamente via JavaScript (dom.js) -->
+                    </tbody>
+                </table>
+                <p id="tabela-vazia" class="tabela-vazia" hidden>
+                    Nenhum cliente cadastrado até o momento.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="rodape">
+        <p>&copy; 2026 Cadastro de Clientes.</p>
+    </footer>
+
+    <!-- app.js é o único ponto de entrada; ele importa api.js e dom.js como módulos -->
+    <script type="module" src="frontend/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,329 @@
+/* =============================================================
+   styles.css
+   Design responsivo e minimalista para o sistema de Cadastro de Clientes.
+   Organizado em: variáveis > reset > layout > componentes > responsividade.
+   ============================================================= */
+
+:root {
+    --cor-primaria: #1d4ed8;
+    --cor-primaria-escura: #1e40af;
+    --cor-perigo: #b91c1c;
+    --cor-sucesso: #15803d;
+    --cor-texto: #111827;
+    --cor-texto-suave: #4b5563;
+    --cor-fundo: #f3f4f6;
+    --cor-cartao: #ffffff;
+    --cor-borda: #9ca3af;
+    --cor-foco: #1d4ed8;
+    --raio: 8px;
+    --sombra: 0 1px 3px rgba(0, 0, 0, 0.15);
+    --fonte: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Fonte base maior (~18px em vez de 16px) para facilitar leitura de quem tem baixa visão */
+html {
+    font-size: 112.5%;
+}
+
+/* Reset simples */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: var(--fonte);
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    line-height: 1.5;
+}
+
+/* Cabeçalho */
+.cabecalho {
+    background-color: var(--cor-cartao);
+    padding: 1.5rem 1rem;
+    text-align: center;
+    border-bottom: 1px solid var(--cor-borda);
+}
+
+.cabecalho h1 {
+    margin: 0 0 0.25rem;
+    font-size: 1.6rem;
+}
+
+.subtitulo {
+    margin: 0;
+    color: var(--cor-texto-suave);
+    font-size: 0.95rem;
+}
+
+/* Layout principal */
+.conteudo {
+    max-width: 960px;
+    margin: 1.5rem auto;
+    padding: 0 1rem;
+    display: grid;
+    gap: 1.5rem;
+}
+
+.cartao {
+    background-color: var(--cor-cartao);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio);
+    box-shadow: var(--sombra);
+    padding: 1.25rem;
+}
+
+.cartao h2 {
+    margin-top: 0;
+    font-size: 1.15rem;
+}
+
+/* Formulário */
+
+/* Indicador de progresso do preenchimento (texto simples, lido por leitor de tela) */
+.progresso {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--cor-primaria-escura);
+    margin: 0 0 1rem;
+}
+
+.campo {
+    margin-bottom: 1.4rem;
+    /* Entrada suave quando um novo campo é revelado, sem ser brusco */
+    animation: revelar-campo 0.3s ease-in;
+}
+
+@keyframes revelar-campo {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Respeita quem configurou o sistema para reduzir animações */
+@media (prefers-reduced-motion: reduce) {
+    .campo {
+        animation: none;
+    }
+}
+
+.campo label {
+    display: block;
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin-bottom: 0.4rem;
+}
+
+.campo input {
+    width: 100%;
+    min-height: 48px; /* alvo de toque maior, mais fácil de acertar */
+    padding: 0.7rem 0.8rem;
+    border: 2px solid var(--cor-borda);
+    border-radius: var(--raio);
+    font-size: 1.05rem;
+    color: var(--cor-texto);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.campo input::placeholder {
+    color: #6b7280;
+}
+
+/* Indicador de foco bem visível (não depende só da cor da borda) */
+.campo input:focus,
+.botao:focus-visible {
+    outline: 3px solid var(--cor-foco);
+    outline-offset: 2px;
+}
+
+.campo input.invalido {
+    border-color: var(--cor-perigo);
+    border-width: 3px;
+}
+
+.erro {
+    display: block;
+    min-height: 1.3rem;
+    color: var(--cor-perigo);
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-top: 0.3rem;
+}
+
+.acoes-formulario {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    animation: revelar-campo 0.3s ease-in;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .acoes-formulario {
+        animation: none;
+    }
+}
+
+/* Botões */
+.botao {
+    cursor: pointer;
+    border: none;
+    border-radius: var(--raio);
+    min-height: 48px; /* alvo de toque maior */
+    padding: 0.7rem 1.3rem;
+    font-size: 1rem;
+    font-weight: 700;
+    transition: background-color 0.15s ease, opacity 0.15s ease;
+}
+
+.botao-primario {
+    background-color: var(--cor-primaria);
+    color: #fff;
+}
+
+.botao-primario:hover {
+    background-color: var(--cor-primaria-escura);
+}
+
+.botao-secundario {
+    background-color: var(--cor-borda);
+    color: var(--cor-texto);
+}
+
+.botao-secundario:hover {
+    opacity: 0.85;
+}
+
+.botao-texto {
+    background: none;
+    color: var(--cor-primaria);
+    padding: 0.4rem 0.6rem;
+}
+
+.botao-texto:hover {
+    text-decoration: underline;
+}
+
+.botao-perigo {
+    background-color: #fee2e2;
+    color: var(--cor-perigo);
+}
+
+.botao-perigo:hover {
+    background-color: #fecaca;
+}
+
+.botao-editar {
+    background-color: #e0f2fe;
+    color: var(--cor-primaria-escura);
+}
+
+.botao-editar:hover {
+    background-color: #bae6fd;
+}
+
+.botao[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Mensagem de status */
+.mensagem-status {
+    margin: 0.75rem 0 0;
+    font-size: 0.9rem;
+    min-height: 1.2rem;
+}
+
+.mensagem-status.sucesso {
+    color: var(--cor-sucesso);
+}
+
+.mensagem-status.erro {
+    color: var(--cor-perigo);
+}
+
+/* Lista/tabela */
+.cabecalho-lista {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tabela-wrapper {
+    overflow-x: auto;
+    margin-top: 0.75rem;
+}
+
+.tabela-clientes {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 560px;
+}
+
+.tabela-clientes th,
+.tabela-clientes td {
+    text-align: left;
+    padding: 0.6rem 0.5rem;
+    border-bottom: 1px solid var(--cor-borda);
+    font-size: 0.9rem;
+}
+
+.tabela-clientes th {
+    color: var(--cor-texto-suave);
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.tabela-clientes tbody tr:hover {
+    background-color: #f9fafb;
+}
+
+.celula-acoes {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.tabela-vazia {
+    text-align: center;
+    color: var(--cor-texto-suave);
+    padding: 1.5rem 0;
+}
+
+/* Rodapé */
+.rodape {
+    text-align: center;
+    color: var(--cor-texto-suave);
+    font-size: 0.8rem;
+    padding: 1.5rem 1rem;
+}
+
+/* Responsividade */
+@media (min-width: 700px) {
+    .conteudo {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .cabecalho h1 {
+        font-size: 1.3rem;
+    }
+
+    .acoes-formulario {
+        flex-direction: column;
+    }
+
+    .acoes-formulario .botao {
+        width: 100%;
+    }
+}
