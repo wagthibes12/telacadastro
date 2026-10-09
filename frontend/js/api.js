@@ -4,6 +4,8 @@
  * Não manipula o DOM — apenas envia/recebe dados. Isso permite reutilizar
  * este módulo em qualquer outra interface (ex: um app mobile) sem alterações.
  */
+import { fetchAutenticado } from "./auth.js";
+
 
 const API_BASE_URL = "http://127.0.0.1:8000";
 
@@ -31,7 +33,7 @@ async function tratarResposta(resposta) {
 
 /** Busca todos os clientes cadastrados. */
 export async function buscarClientes() {
-    const resposta = await fetch(`${API_BASE_URL}/clientes`);
+    const resposta = await fetchAutenticado(`${API_BASE_URL}/clientes`);
     return tratarResposta(resposta);
 }
 
@@ -40,7 +42,7 @@ export async function buscarClientes() {
  * @param {{nome: string, email: string, telefone: string, cidade: string}} cliente
  */
 export async function criarCliente(cliente) {
-    const resposta = await fetch(`${API_BASE_URL}/clientes`, {
+    const resposta = await fetchAutenticado(`${API_BASE_URL}/clientes`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(cliente),
@@ -54,7 +56,7 @@ export async function criarCliente(cliente) {
  * @param {{nome: string, email: string, telefone: string, cidade: string}} cliente
  */
 export async function atualizarCliente(id, cliente) {
-    const resposta = await fetch(`${API_BASE_URL}/clientes/${id}`, {
+    const resposta = await fetchAutenticado(`${API_BASE_URL}/clientes/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(cliente),
@@ -67,7 +69,7 @@ export async function atualizarCliente(id, cliente) {
  * @param {number} id
  */
 export async function deletarCliente(id) {
-    const resposta = await fetch(`${API_BASE_URL}/clientes/${id}`, {
+    const resposta = await fetchAutenticado(`${API_BASE_URL}/clientes/${id}`, {
         method: "DELETE",
     });
     return tratarResposta(resposta);

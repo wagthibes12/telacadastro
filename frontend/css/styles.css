@@ -327,3 +327,60 @@ body {
         width: 100%;
     }
 }
+
+
+.pagina-login {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.login-wrapper {
+    width: 100%;
+    max-width: 420px;
+}
+
+.login-cartao h1 {
+    margin-top: 0;
+    font-size: 1.6rem;
+}
+
+.botao-bloco {
+    width: 100%;
+}
+
+.campo-senha-wrapper {
+    position: relative;
+}
+
+.campo-senha-wrapper input {
+    padding-right: 3rem; /* espaço pro botão do olho não cobrir o texto */
+}
+
+.botao-olho {
+    position: absolute;
+    top: 50%;
+    right: 0.4rem;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--cor-texto-suave);
+    border-radius: var(--raio);
+}
+
+.botao-olho:hover {
+    color: var(--cor-primaria);
+}
+
+.botao-olho:focus-visible {
+    outline: 3px solid var(--cor-foco);
+    outline-offset: 2px;
+}

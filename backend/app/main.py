@@ -15,8 +15,8 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
-from .database import create_db_and_tables, fechar_tunel_ssh
+from .auth_routes import router as auth_router
+from .database import fechar_tunel_ssh
 from .routes import router as clientes_router
 
 # Origens autorizadas a consumir a API.
@@ -34,7 +34,7 @@ ORIGENS_PERMITIDAS = [
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Executado uma vez, na subida da aplicação."""
-    create_db_and_tables()
+    
     yield
     # Encerra o túnel SSH aberto em database.py, liberando a conexão
     fechar_tunel_ssh()
@@ -56,6 +56,7 @@ app.add_middleware(
 )
 
 app.include_router(clientes_router)
+app.include_router(auth_router)
 
 
 @app.get("/", tags=["Health"], summary="Health check")

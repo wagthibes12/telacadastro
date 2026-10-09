@@ -6,7 +6,7 @@
  * Não deve conter lógica de fetch nem manipulação direta de elementos além
  * do necessário para registrar os event listeners.
  */
-
+import { exigirAutenticacao, validarSessaoNoServidor } from "./auth.js";
 import { buscarClientes, criarCliente, atualizarCliente, deletarCliente } from "./api.js";
 import {
     elementos,
@@ -122,7 +122,12 @@ function registrarEventos() {
 }
 
 /** Inicialização da aplicação. */
-function iniciar() {
+async function iniciar() {
+    if (!exigirAutenticacao()) return;
+
+    const sessaoValida = await validarSessaoNoServidor();
+    if (!sessaoValida) return;
+
     registrarEventos();
     carregarClientes();
 }

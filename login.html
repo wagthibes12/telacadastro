@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Cadastro de Clientes</title>
+    <link rel="stylesheet" href="frontend/css/styles.css" />
+</head>
+<body class="pagina-login">
+    <main class="login-wrapper">
+        <section class="cartao login-cartao" aria-labelledby="titulo-login">
+            <h1 id="titulo-login">Entrar</h1>
+            <p class="subtitulo">Acesse o sistema de Cadastro de Clientes</p>
+
+            <form id="form-login" novalidate>
+                <div class="campo">
+                    <label for="login-email">Usuário (e-mail)</label>
+                    <input type="email" id="login-email" name="email" required
+                           placeholder="Ex: [email protected]" autocomplete="username" />
+                    <small class="erro" id="erro-login-email" role="alert"></small>
+                </div>
+
+    <div class="campo">
+        <label for="login-senha">Senha</label>
+        <div class="campo-senha-wrapper">
+            <input type="password" id="login-senha" name="senha" required 
+                    placeholder="Digite sua senha" autocomplete="current-password" />
+            <button type="button" id="btn-mostrar-senha" class="botao-olho"
+                    aria-label="Mostrar senha" aria-pressed="false">
+                <svg id="icone-olho" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                     stroke-linejoin="round" aria-hidden="true">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+            </button>
+        </div>
+        <small class="erro" id="erro-login-senha" role="alert"></small>
+    </div>
+                <button type="submit" id="btn-entrar" class="botao botao-primario botao-bloco">
+                    Entrar
+                </button>
+            </form>
+
+            <p id="mensagem-login" class="mensagem-status" role="status" aria-live="polite"></p>
+        </section>
+    </main>
+
+    <script type="module" src="frontend/js/login.js"></script>
+</body>
+</html>

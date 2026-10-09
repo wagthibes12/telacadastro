@@ -1,0 +1,15 @@
+# Credenciais e segredos (NUNCA versionar)
+.env
+.env.*
+!.env.example
+
+# Ambiente virtual Python
+venv/
+.venv/
+
+# Cache do Python
+__pycache__/
+*.pyc
+
+# Editor
+.vscode/

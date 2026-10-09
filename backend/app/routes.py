@@ -13,12 +13,16 @@ from typing import List
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.exc import IntegrityError
 from sqlmodel import Session, select
-
+from .auth import get_current_user
 from .database import get_session
 from .models import Cliente
 from .schemas import ClienteCreate, ClienteUpdate, ClienteRead
 
-router = APIRouter(prefix="/clientes", tags=["Clientes"])
+router = APIRouter(
+    prefix="/clientes",
+    tags=["Clientes"],
+    dependencies=[Depends(get_current_user)],  # protege TODAS as rotas abaixo
+)
 
 
 @router.post(

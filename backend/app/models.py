@@ -31,3 +31,16 @@ class Cliente(SQLModel, table=True):
 
     criado_em: datetime = Field(default_factory=datetime.utcnow, nullable=False)
     atualizado_em: Optional[datetime] = Field(default=None)
+
+class Usuario(SQLModel, table=True):
+    """
+    Representa a tabela 'usuarios' no MySQL — usada para autenticação (login).
+    Guarda apenas o HASH da senha (nunca a senha em texto puro).
+    """
+
+    __tablename__ = "usuarios"
+
+    id: Optional[int] = Field(default=None, primary_key=True)
+    email: str = Field(nullable=False, max_length=150, unique=True, index=True)
+    senha_hash: str = Field(nullable=False, max_length=255)
+    criado_em: datetime = Field(default_factory=datetime.utcnow, nullable=False)    
